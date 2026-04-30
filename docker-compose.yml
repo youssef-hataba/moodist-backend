@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: moodist_db_container
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: moodist_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - moodist_data:/var/lib/postgresql/data
+
+volumes:
+  moodist_data:
