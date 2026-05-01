@@ -21,3 +21,50 @@ enum Role {
   USER
   ADMIN
 }
+
+// ********** PRODUCTS **********
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Product {
+  id               String   @id @default(uuid())
+  title            String
+  description      String?
+  basePrice        Float
+  images           String[]
+  
+  categoryId       String
+  category         Category @relation(fields: [categoryId], references: [id])
+  
+  variants         ProductVariant[]
+  designs          Design[]       
+  
+  hasCustomDesigns Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model ProductVariant {
+  id        String  @id @default(uuid())
+  size      String 
+  color     String  
+  stock     Int     @default(0)
+  price     Float?  
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Design {
+  id        String  @id @default(uuid())
+  name      String?
+  imageUrl  String
+  
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
