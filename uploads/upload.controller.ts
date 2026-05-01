@@ -5,31 +5,33 @@ import {
   UploadedFile,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import cloudinary from '../src/config/cloudinary';
+
+
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: async (req, file) => {
+    return {
+      folder: 'moodist-products',
+      format: 'png',
+      public_id: `${Date.now()}-${file.originalname}`,
+    };
+  },
+});
 
 @Controller('upload')
 export class UploadController {
   @Post('image')
   @UseInterceptors(
     FileInterceptor('file', {
-      storage: diskStorage({
-        destination: './uploads',
-        filename: (req, file, cb) => {
-          const uniqueSuffix =
-            Date.now() + '-' + Math.round(Math.random() * 1e9);
-
-          cb(
-            null,
-            `${uniqueSuffix}${extname(file.originalname)}`,
-          );
-        },
-      }),
+      storage,
     }),
   )
-  uploadImage(@UploadedFile() file: Express.Multer.File) {
+  uploadImage(@UploadedFile() file: any) {
     return {
-      url: `http://localhost:3000/uploads/${file.filename}`,
+      url: file.path, // Cloudinary URL
+      public_id: file.filename,
     };
   }
 }

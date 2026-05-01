@@ -1,4 +1,4 @@
-import { 
+import {
   Injectable,
   BadRequestException,
   UnauthorizedException,
@@ -13,11 +13,11 @@ export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
-  ) {}
+  ) { }
 
   async register(data: RegisterDto) {
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    
+
     try {
       const user = await this.prisma.user.create({
         data: {
@@ -26,10 +26,22 @@ export class AuthService {
           name: data.name,
         },
       });
-      
+
+      const payload = {
+        sub: user.id,
+        email: user.email,
+        role: user.role,
+      };
+
+      const token = await this.jwtService.signAsync(payload);
+
       const { password: _, ...result } = user;
-      return result;
-    } catch (_error) {
+
+      return {
+        user: result,
+        access_token: token,
+      };
+    } catch (error) {
       throw new BadRequestException('Email already exists');
     }
   }
@@ -49,7 +61,7 @@ export class AuthService {
     }
 
     const payload = { sub: user.id, email: user.email, role: user.role };
-    
+
     return {
       access_token: await this.jwtService.signAsync(payload),
     };

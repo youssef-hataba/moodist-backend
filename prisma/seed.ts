@@ -45,71 +45,72 @@ async function main() {
   // REAL PRODUCTS
   // =========================
   const products = [
-    // T-SHIRTS
-    {
-      title: "Nike Sportswear Club T-Shirt",
-      price: 899,
-      categoryId: tshirts.id,
-      img: "https://pin.it/5b9ICr6sd",
-    },
-    {
-      title: "Adidas Essentials Tee",
-      price: 849,
-      categoryId: tshirts.id,
-      img: "https://pin.it/5IJpKnDWs",
-    },
-    {
-      title: "Puma Logo Classic Tee",
-      price: 799,
-      categoryId: tshirts.id,
-      img: "https://pin.it/g3goSYJAp",
-    },
+  // T-SHIRTS
+  {
+    title: "Nike Sportswear Club T-Shirt",
+    price: 899,
+    categoryId: tshirts.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670236/moodist-products/1777670236012-shirts.jpg.png",
+  },
+  {
+    title: "Adidas Essentials Tee",
+    price: 849,
+    categoryId: tshirts.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670236/moodist-products/1777670236012-shirts.jpg.png",
+  },
+  {
+    title: "Puma Logo Classic Tee",
+    price: 799,
+    categoryId: tshirts.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670236/moodist-products/1777670236012-shirts.jpg.png",
+  },
 
-    // PANTS
-    {
-      title: "Levi's 511 Slim Fit Jeans",
-      price: 2499,
-      categoryId: pants.id,
-      img: "https://pin.it/HmSD6PG1O",
-    },
-    {
-      title: "Zara Slim Fit Chino Pants",
-      price: 1599,
-      categoryId: pants.id,
-      img: "https://pin.it/2BptA4oaC",
-    },
-    {
-      title: "H&M Regular Fit Jeans",
-      price: 1299,
-      categoryId: pants.id,
-      img: "https://pin.it/1MSFqXuom",
-    },
-    {
-      title: "Carhartt WIP Cargo Pants",
-      price: 2999,
-      categoryId: pants.id,
-      img: "https://pin.it/6QkrShdTc",
-    },
-    // HOODIES
-    {
-      title: "Nike Club Fleece Hoodie",
-      price: 1899,
-      categoryId: hoodies.id,
-      img: "https://pin.it/2glNbefS4",
-    },
-    {
-      title: "Adidas Essentials Hoodie",
-      price: 1799,
-      categoryId: hoodies.id,
-      img: "https://pin.it/46Geb4NX7",
-    },
-    {
-      title: "Zara Oversized Hoodie",
-      price: 1499,
-      categoryId: hoodies.id,
-      img: "https://pin.it/6jcAm9n1q",
-    },
-  ];
+  // PANTS
+  {
+    title: "Levi's 511 Slim Fit Jeans",
+    price: 2499,
+    categoryId: pants.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
+  },
+  {
+    title: "Zara Slim Fit Chino Pants",
+    price: 1599,
+    categoryId: pants.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
+  },
+  {
+    title: "H&M Regular Fit Jeans",
+    price: 1299,
+    categoryId: pants.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
+  },
+  {
+    title: "Carhartt WIP Cargo Pants",
+    price: 2999,
+    categoryId: pants.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
+  },
+
+  // HOODIES
+  {
+    title: "Nike Club Fleece Hoodie",
+    price: 1899,
+    categoryId: hoodies.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670195/moodist-products/1777670194680-hoodie.jpg.png",
+  },
+  {
+    title: "Adidas Essentials Hoodie",
+    price: 1799,
+    categoryId: hoodies.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670195/moodist-products/1777670194680-hoodie.jpg.png",
+  },
+  {
+    title: "Zara Oversized Hoodie",
+    price: 1499,
+    categoryId: hoodies.id,
+    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670195/moodist-products/1777670194680-hoodie.jpg.png",
+  },
+];
 
   for (let i = 0; i < products.length; i++) {
     const p = products[i];
