@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './products/products.module';
 import { UploadModule } from 'uploads/upload.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { UploadModule } from 'uploads/upload.module';
       isGlobal: true,
     }),
     AuthModule,
-    PrismaModule, CategoriesModule, ProductsModule,UploadModule
+    PrismaModule, CategoriesModule, ProductsModule,UploadModule, CartModule
   ],
 })
 export class AppModule { }
