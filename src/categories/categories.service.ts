@@ -6,14 +6,34 @@ import {
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { Category } from '@prisma/client';
+import { generateSlug } from './utils/slug.util';
 
 @Injectable()
 export class CategoriesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
+
+  private async generateUniqueSlug(baseSlug: string): Promise<string> {
+    let slug = baseSlug;
+    let counter = 1;
+
+    while (true) {
+      const exists = await this.prisma.category.findUnique({
+        where: { slug },
+      });
+
+      if (!exists) return slug;
+
+      slug = `${baseSlug}-${counter}`;
+      counter++;
+    }
+  }
 
   // CREATE
   async create(dto: CreateCategoryDto): Promise<Category> {
     const name = dto.name.trim().toLowerCase();
+    const description = dto.description?.trim().toLowerCase();
+    const baseSlug = generateSlug(name);
+    const slug = await this.generateUniqueSlug(baseSlug);
 
     const exists = await this.prisma.category.findUnique({
       where: { name },
@@ -24,7 +44,15 @@ export class CategoriesService {
     }
 
     return this.prisma.category.create({
-      data: { name },
+      data: {
+        name,
+        description,
+        slug,
+        image: dto.image,
+        metaTitle: dto.metaTitle,
+        metaDescription: dto.metaDescription,
+        metaKeywords: dto.metaKeywords,
+      },
     });
   }
 
@@ -48,6 +76,21 @@ export class CategoriesService {
   async findOne(id: string): Promise<Category> {
     const category = await this.prisma.category.findUnique({
       where: { id },
+      include: {
+        products: true,
+      },
+    });
+
+    if (!category) {
+      throw new NotFoundException('Category not found');
+    }
+
+    return category;
+  }
+
+  async findBySlug(slug: string): Promise<Category> {
+    const category = await this.prisma.category.findUnique({
+      where: { slug },
       include: {
         products: true,
       },
