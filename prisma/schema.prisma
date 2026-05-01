@@ -41,21 +41,40 @@ model Category {
 }
 
 model Product {
-  id               String   @id @default(uuid())
-  title            String
-  description      String?
-  basePrice        Float
-  images           String[]
-  
-  categoryId       String
-  category         Category @relation(fields: [categoryId], references: [id])
-  
-  variants         ProductVariant[]
-  designs          Design[]       
-  
-  hasCustomDesigns Boolean  @default(false)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  description String?
+
+  basePrice   Float
+
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+
+  variants    ProductVariant[]
+  designs     Design[]
+
+  images      ProductImage[]
+
+  isActive    Boolean  @default(true)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([title])
+  @@index([slug])
+}
+
+
+model ProductImage {
+  id        String  @id @default(uuid())
+  url       String
+  alt       String?
+  isPrimary Boolean @default(false)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model ProductVariant {
@@ -67,6 +86,9 @@ model ProductVariant {
 
   productId String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  @@unique([productId, size, color])
+  @@index([productId])
 }
 
 model Design {
