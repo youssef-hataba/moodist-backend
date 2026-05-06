@@ -45,72 +45,72 @@ async function main() {
   // REAL PRODUCTS
   // =========================
   const products = [
-  // T-SHIRTS
-  {
-    title: "Nike Sportswear Club T-Shirt",
-    price: 899,
-    categoryId: tshirts.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670236/moodist-products/1777670236012-shirts.jpg.png",
-  },
-  {
-    title: "Adidas Essentials Tee",
-    price: 849,
-    categoryId: tshirts.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670236/moodist-products/1777670236012-shirts.jpg.png",
-  },
-  {
-    title: "Puma Logo Classic Tee",
-    price: 799,
-    categoryId: tshirts.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670236/moodist-products/1777670236012-shirts.jpg.png",
-  },
+    // T-SHIRTS
+    {
+      title: "Nike Sportswear Club T-Shirt",
+      price: 899,
+      categoryId: tshirts.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670236/moodist-products/1777670236012-shirts.jpg.png",
+    },
+    {
+      title: "Adidas Essentials Tee",
+      price: 849,
+      categoryId: tshirts.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670236/moodist-products/1777670236012-shirts.jpg.png",
+    },
+    {
+      title: "Puma Logo Classic Tee",
+      price: 799,
+      categoryId: tshirts.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670236/moodist-products/1777670236012-shirts.jpg.png",
+    },
 
-  // PANTS
-  {
-    title: "Levi's 511 Slim Fit Jeans",
-    price: 2499,
-    categoryId: pants.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
-  },
-  {
-    title: "Zara Slim Fit Chino Pants",
-    price: 1599,
-    categoryId: pants.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
-  },
-  {
-    title: "H&M Regular Fit Jeans",
-    price: 1299,
-    categoryId: pants.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
-  },
-  {
-    title: "Carhartt WIP Cargo Pants",
-    price: 2999,
-    categoryId: pants.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
-  },
+    // PANTS
+    {
+      title: "Levi's 511 Slim Fit Jeans",
+      price: 2499,
+      categoryId: pants.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
+    },
+    {
+      title: "Zara Slim Fit Chino Pants",
+      price: 1599,
+      categoryId: pants.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
+    },
+    {
+      title: "H&M Regular Fit Jeans",
+      price: 1299,
+      categoryId: pants.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
+    },
+    {
+      title: "Carhartt WIP Cargo Pants",
+      price: 2999,
+      categoryId: pants.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670278/moodist-products/1777670277202-pants.jpg.png",
+    },
 
-  // HOODIES
-  {
-    title: "Nike Club Fleece Hoodie",
-    price: 1899,
-    categoryId: hoodies.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670195/moodist-products/1777670194680-hoodie.jpg.png",
-  },
-  {
-    title: "Adidas Essentials Hoodie",
-    price: 1799,
-    categoryId: hoodies.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670195/moodist-products/1777670194680-hoodie.jpg.png",
-  },
-  {
-    title: "Zara Oversized Hoodie",
-    price: 1499,
-    categoryId: hoodies.id,
-    img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670195/moodist-products/1777670194680-hoodie.jpg.png",
-  },
-];
+    // HOODIES
+    {
+      title: "Nike Club Fleece Hoodie",
+      price: 1899,
+      categoryId: hoodies.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670195/moodist-products/1777670194680-hoodie.jpg.png",
+    },
+    {
+      title: "Adidas Essentials Hoodie",
+      price: 1799,
+      categoryId: hoodies.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670195/moodist-products/1777670194680-hoodie.jpg.png",
+    },
+    {
+      title: "Zara Oversized Hoodie",
+      price: 1499,
+      categoryId: hoodies.id,
+      img: "https://res.cloudinary.com/dmohzjxxd/image/upload/v1777670195/moodist-products/1777670194680-hoodie.jpg.png",
+    },
+  ];
 
   for (let i = 0; i < products.length; i++) {
     const p = products[i];
@@ -143,6 +143,79 @@ async function main() {
     });
   }
 
+  // =========================
+  // DEMO USER, ADDRESS, CART & ORDER
+  // =========================
+  const demoUser = await prisma.user.create({
+    data: {
+      email: 'demo@example.com',
+      password: 'demo123', // In real app, hash this
+      name: 'Demo User',
+      role: 'USER',
+    },
+  });
+
+  // Address for the demo user
+  const demoAddress = await prisma.address.create({
+    data: {
+      userId: demoUser.id,
+      title: 'Home',
+      city: 'Cairo',
+      street: '123 Demo St',
+      isDefault: true,
+    },
+  });
+
+  // Pick a product variant to add to cart
+  const sampleProduct = await prisma.product.findFirst({
+    include: { variants: true },
+  });
+  const sampleVariant = sampleProduct?.variants[0];
+
+  if (sampleVariant) {
+    const demoCart = await prisma.cart.create({
+      data: {
+        userId: demoUser.id,
+        items: {
+          create: [
+            {
+              productId: sampleProduct!.id,
+              variantId: sampleVariant.id,
+              quantity: 2,
+              customDesignUrl: null,
+              customText: null,
+            },
+          ],
+        },
+      },
+    });
+
+    // Calculate total amount based on variant price
+    const totalAmount = sampleVariant.price! * 2;
+
+    // Create an order from the cart
+    await prisma.order.create({
+      data: {
+        userId: demoUser.id,
+        addressId: demoAddress.id,
+        paymentMethod: 'COD',
+        status: 'PENDING',
+        totalAmount,
+        items: {
+          create: [
+            {
+              productId: sampleProduct!.id,
+              variantId: sampleVariant.id,
+              quantity: 2,
+              price: sampleVariant.price!,
+            },
+          ],
+        },
+      },
+    });
+  }
+
+  console.log('Demo data seeded successfully.');
   console.log("Real data seeded successfully.");
 }
 
@@ -153,4 +226,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
-  });
+  });

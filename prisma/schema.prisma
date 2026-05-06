@@ -12,11 +12,16 @@ model User {
   email     String   @unique
   password  String
   name      String?
+  phone     String?
   role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   cart      Cart?
+  wishlist  Wishlist?
+  orders    Order[]
+  addresses Address[]
+  reviews   Review[]
 }
 
 enum Role {
@@ -58,6 +63,9 @@ model Product {
   images      ProductImage[]
 
   cartItems   CartItem[]
+  orderItems  OrderItem[]
+  reviews     Review[]
+  wishlistItems WishlistItem[]
 
   isActive    Boolean  @default(true)
 
@@ -91,6 +99,7 @@ model ProductVariant {
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   cartItems CartItem[]
+  orderItems OrderItem[]
   
   @@unique([productId, size, color])
   @@index([productId])
@@ -104,6 +113,8 @@ model Design {
   productId String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
+
+// ********** CART & WISHLIST **********
 
 model Cart {
   id        String     @id @default(uuid())
@@ -130,9 +141,125 @@ model CartItem {
   variant   ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
 
   quantity  Int      @default(1)
+  
+  // Customization data
+  customDesignUrl String?
+  customText      String?
 
   createdAt DateTime @default(now())
 
-  @@unique([cartId, productId, variantId])
+  @@unique([cartId, productId, variantId, customDesignUrl])
   @@index([cartId])
+}
+
+model Wishlist {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     WishlistItem[]
+  createdAt DateTime @default(now())
+}
+
+model WishlistItem {
+  id         String   @id @default(uuid())
+  wishlistId String
+  wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@unique([wishlistId, productId])
+}
+
+// ********** ORDERS **********
+
+model Order {
+  id          String   @id @default(uuid())
+  orderNumber String   @unique @default(cuid())
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+
+  items       OrderItem[]
+  
+  totalAmount Float
+  status      OrderStatus @default(PENDING)
+  
+  // Shipping Info
+  addressId   String
+  address     Address @relation(fields: [addressId], references: [id])
+  
+  paymentMethod PaymentMethod @default(COD)
+  paymentStatus PaymentStatus @default(UNPAID)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  
+  variantId String?
+  variant   ProductVariant? @relation(fields: [variantId], references: [id])
+  
+  quantity  Int
+  price     Float // Historical price at time of purchase
+  
+  customDesignUrl String?
+  customText      String?
+}
+
+model Address {
+  id        String  @id @default(uuid())
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  title     String  // e.g., "Home", "Work"
+  city      String
+  area      String?
+  street    String
+  building  String?
+  apartment String?
+  isDefault Boolean @default(false)
+  
+  orders    Order[]
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int
+  comment   String?
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  COD
+  CARD
+  WALLET
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  REFUNDED
 }

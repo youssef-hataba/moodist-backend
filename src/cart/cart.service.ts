@@ -39,6 +39,8 @@ export class CartService {
       cartId: cart.id,
       productId: dto.productId,
       variantId: dto.variantId ?? null,
+      customDesignUrl: dto.customDesignUrl ?? null,
+      customText: dto.customText ?? null,
     },
   });
 
@@ -57,6 +59,8 @@ export class CartService {
       productId: dto.productId,
       variantId: dto.variantId,
       quantity: dto.quantity,
+      customDesignUrl: dto.customDesignUrl,
+      customText: dto.customText,
     },
   });
 }

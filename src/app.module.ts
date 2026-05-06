@@ -6,6 +6,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './products/products.module';
 import { UploadModule } from 'uploads/upload.module';
 import { CartModule } from './cart/cart.module';
+import { WishlistModule } from './wishlist/wishlist.module';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { CartModule } from './cart/cart.module';
       isGlobal: true,
     }),
     AuthModule,
-    PrismaModule, CategoriesModule, ProductsModule,UploadModule, CartModule
+    PrismaModule, CategoriesModule, ProductsModule,UploadModule, CartModule, WishlistModule
   ],
 })
 export class AppModule { }

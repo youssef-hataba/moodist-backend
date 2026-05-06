@@ -11,4 +11,12 @@ export class AddToCartDto {
   @IsInt()
   @Min(1)
   quantity!: number;
+
+  @IsOptional()
+  @IsString()
+  customDesignUrl?: string;
+
+  @IsOptional()
+  @IsString()
+  customText?: string;
 }
